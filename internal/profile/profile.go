@@ -1,6 +1,7 @@
 package profile
 
 import (
+	"strconv"
 	"strings"
 )
 
@@ -16,21 +17,21 @@ func BuildUserCard(name string, age int, active bool) string {
 	//name
 	name = strings.Title(strings.ToLower(strings.TrimSpace(name)))
 	if name == "" {
-		name = "Unkown"
+		name = "Unknown"
 	}
 	//age
-	var agestr string
+	var gr string
 	if age >= 18 {
-		agestr = "adult"
+		gr = "adult"
 	} else {
-		agestr = "minor"
+		gr = "minor"
 	}
 	//group&status
-	var gr string
+	var st string
 	if active == true {
-		gr = "active"
+		st = "active"
 	} else {
-		gr = "inactive"
+		st = "inactive"
 	}
-	return "name=" + name + " age=" + agestr + " group=" + gr + " age=" + gr
+	return "name=" + name + " age=" + strconv.Itoa(age) + " group=" + gr + " status=" + st
 }

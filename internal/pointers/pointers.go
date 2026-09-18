@@ -21,7 +21,8 @@ func Increment(p *int) int {
 	if p == nil {
 		return 0
 	}
-	return *p + 1
+	*p++
+	return *p
 }
 
 // SetValue записывает новое значение по указателю.
@@ -67,7 +68,8 @@ func AddToValue(p *int, delta int) int {
 	if p == nil {
 		return 0
 	}
-	return *p + delta
+	*p += delta
+	return *p
 }
 
 // MaxPointer возвращает указатель на большее значение.
@@ -144,7 +146,7 @@ func ApplyDiscountInPlace(price *int, percent int) bool {
 	if price == nil || percent < 0 {
 		return false
 	}
-	if percent >= 0 {
+	if percent >= 100 {
 		*price = 0
 		return true
 	}

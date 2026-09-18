@@ -1,6 +1,7 @@
 package conversion
 
 import (
+	"errors"
 	"strconv"
 )
 
@@ -122,6 +123,9 @@ func PriceRubStringToKop(text string) (Kop, error) {
 	if err != nil {
 		return 0, err
 	}
+	if i < 0 {
+		return 0, errors.New("minus")
+	}
 	return Kop(i * 100), nil
 }
 
@@ -131,6 +135,9 @@ func PriceRubStringToKop(text string) (Kop, error) {
 func SafeParsePositive(text string) int {
 	i, err := strconv.Atoi(text)
 	if err != nil {
+		return 0
+	}
+	if i < 0 {
 		return 0
 	}
 	return i

@@ -20,7 +20,7 @@ func Add(a, b float64) float64 {
 //
 // TODO: верните результат вычитания b из a.
 func Subtract(a, b float64) float64 {
-	return b - a
+	return a - b
 }
 
 // Multiply умножает два дробных числа.
@@ -61,7 +61,7 @@ func AddTax(price, taxPercent float64) float64 {
 	if taxPercent < 0 {
 		return price
 	} else {
-		return (price * (100 - taxPercent) / 100)
+		return (price * (100 + taxPercent) / 100)
 	}
 }
 
@@ -90,7 +90,7 @@ func Average(a, b float64) float64 {
 //
 // TODO: верните value, округлённое до двух знаков после десятичной точки. Например, 12.345 должно стать 12.35.
 func Round2(value float64) float64 {
-	return math.Round(value)
+	return math.Round(value*100) / 100
 }
 
 // FormatPrice форматирует цену с двумя знаками после точки.
@@ -114,7 +114,8 @@ func GrowthPercent(oldValue, newValue float64) float64 {
 	if oldValue == 0 {
 		return 0
 	}
-	return newValue / oldValue
+	change := ((newValue - oldValue) / math.Abs(oldValue)) * 100
+	return change
 
 }
 
