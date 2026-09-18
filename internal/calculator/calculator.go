@@ -14,6 +14,8 @@ import (
 // TODO: поддержите операции "+", "-", "*", "/" и "%" над a и b. Деление выполняется как целочисленное; нулевой делитель для "/" и "%", пустая или неизвестная операция должны возвращать ошибку.
 func Calculate(a, b int, operation string) (int, error) {
 	switch operation {
+	case "*":
+		return a * b, nil
 	case "+":
 		return a + b, nil
 	case "-":
@@ -31,7 +33,7 @@ func Calculate(a, b int, operation string) (int, error) {
 			return a % b, nil
 		}
 	default:
-		return 0, nil
+		return 0, errors.New("unknown simbol operation")
 	}
 
 }

@@ -18,7 +18,7 @@ func Add(a, b int) int {
 //
 // TODO: верните результат вычитания b из a. Поддерживаются положительные, отрицательные и нулевые значения.
 func Subtract(a, b int) int {
-	return b - a
+	return a - b
 }
 
 // Multiply умножает два целых числа.
@@ -32,6 +32,9 @@ func Multiply(a, b int) int {
 //
 // TODO: верните результат целочисленного деления a на b. Если b равен 0, верните 0.
 func Divide(a, b int) int {
+	if b == 0 {
+		return 0
+	}
 	return a / b
 }
 
@@ -39,6 +42,9 @@ func Divide(a, b int) int {
 //
 // TODO: верните остаток от целочисленного деления a на b. Если b равен 0, верните 0; для отрицательных чисел сохраните правила Go.
 func Remainder(a, b int) int {
+	if b == 0 {
+		return 0
+	}
 	return a % b
 }
 
@@ -133,6 +139,9 @@ func NonNegativeToUint(n int) uint {
 //
 // TODO: верните количество страниц для totalItems элементов по pageSize элементов на странице, округляя вверх. При totalItems <= 0 или pageSize <= 0 верните 0.
 func CountPages(totalItems, pageSize int) int {
+	if totalItems <= 0 || pageSize <= 0 {
+		return 0
+	}
 	if totalItems%pageSize == 0 {
 		return totalItems / pageSize
 	} else {

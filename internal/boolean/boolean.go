@@ -8,7 +8,7 @@ package boolean
 //
 // TODO: верните true, только если age не меньше 18 и hasTicket равен true.
 func CanEnter(age int, hasTicket bool) bool {
-	if age < 18 && hasTicket == true {
+	if age >= 18 && hasTicket == true {
 		return true
 	}
 	return false
@@ -110,6 +110,12 @@ func IsInRange(value, min, max int) bool {
 //
 // TODO: верните true, если год кратен 400 либо кратен 4, но не кратен 100. Для остальных лет верните false.
 func IsLeapYear(year int) bool {
+	if year%4 == 0 && year%100 != 0 {
+		return true
+	}
+	if year%400 == 0 {
+		return true
+	}
 	return false
 }
 

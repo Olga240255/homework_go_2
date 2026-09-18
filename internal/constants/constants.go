@@ -134,8 +134,10 @@ func HTTPStatusText(code int) string {
 	case 200:
 		return "OK"
 	case 201:
-		return "Bad Request"
+		return "Created"
 	case 400:
+		return "Bad Request"
+	case 404:
 		return "Not Found"
 	default:
 		return "Unknown"
@@ -149,8 +151,12 @@ func DayType(day int) string {
 	switch day {
 	case 1, 2, 3, 4, 5:
 		return "working"
+	case 6, 7:
+		return "weekend"
+	default:
+		return "unknown"
+
 	}
-	return "weekend"
 }
 
 // PriorityText возвращает текстовое представление приоритета.
@@ -163,7 +169,7 @@ func PriorityText(priority int) string {
 	case PriorityMedium:
 		return "medium"
 	case PriorityHigh:
-		return "deleted"
+		return "high"
 	default:
 		return "unknown"
 	}
@@ -183,13 +189,16 @@ func IsKnownStatus(status int) bool {
 //
 // TODO: если canceled=true, верните "canceled" независимо от paid; иначе при paid=true верните "paid", а при обоих false — "pending".
 func PaymentStateText(paid, canceled bool) string {
+	if canceled == true {
+		return "canceled"
+	}
 	if paid == false && canceled == false {
 		return "pending"
 	}
 	if paid == true {
 		return "paid"
 	}
-	return "canceled"
+	return "paid"
 }
 
 // TrafficLightAction возвращает действие по цвету светофора.
@@ -220,7 +229,7 @@ func GradeText(score int) string {
 	case score >= 50 && score < 75:
 		return "passed"
 	case score >= 0 && score < 50:
-		return "passed"
+		return "retry"
 	default:
 		return "invalid"
 	}
